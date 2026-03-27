@@ -42,12 +42,6 @@
             font-size: 1.5rem; color: #4a6741; margin: 40px 0 16px;
             padding-bottom: 8px; border-bottom: 2px solid #c8e6c9;
         }
-        h3 { font-size: 1.15rem; color: #3a5a3a; margin: 24px 0 10px; }
-
-        .card {
-            background: white; border-radius: 12px; padding: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px;
-        }
 
         .featured {
             background: white; border-radius: 12px; padding: 28px;
@@ -82,15 +76,21 @@
         .stat-label { font-size: 0.75rem; color: #666; margin-top: 2px; }
 
         .rescue-card {
-            background: white; border-radius: 12px; padding: 20px 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 14px;
+            background: white; border-radius: 12px; padding: 22px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 16px;
             border-left: 4px solid #6b8f71;
         }
         .rescue-card h4 {
-            font-size: 1.05rem; color: #4a6741; margin-bottom: 4px;
+            font-size: 1.1rem; color: #4a6741; margin-bottom: 2px;
         }
-        .rescue-card .region { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+        .rescue-card .meta {
+            font-size: 0.85rem; color: #888; margin-bottom: 8px;
+        }
         .rescue-card p { font-size: 0.93rem; }
+        .rescue-card .details {
+            margin-top: 10px; font-size: 0.88rem; color: #555;
+        }
+        .rescue-card .details strong { color: #3a5a3a; }
 
         .tip-list { list-style: none; padding: 0; counter-reset: tips; }
         .tip-list li {
@@ -112,6 +112,20 @@
         }
         .tip-list li strong { color: #4a6741; }
 
+        .search-tools {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+            margin-top: 16px;
+        }
+        .search-tool {
+            background: white; border-radius: 10px; padding: 18px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            text-decoration: none; color: #2d2d2d;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .search-tool:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .search-tool h4 { color: #4a6741; font-size: 1rem; margin-bottom: 4px; }
+        .search-tool p { font-size: 0.85rem; color: #666; }
+
         .back-link {
             display: inline-block; margin-bottom: 20px; color: #4a6741;
             text-decoration: none; font-weight: 600; font-size: 0.9rem;
@@ -122,6 +136,7 @@
 
         @media (max-width: 600px) {
             .stat-grid { grid-template-columns: 1fr 1fr; }
+            .search-tools { grid-template-columns: 1fr; }
             .hero h1 { font-size: 1.6rem; }
         }
     </style>
@@ -129,12 +144,14 @@
 <body>
     <div class="hero">
         <h1>Adoption Sources</h1>
-        <p>Where to find your future hiking companion</p>
+        <p>Rescues and shelters near Highlands Ranch, CO 80129</p>
     </div>
 
     <nav>
         <a href="#rezdawg">RezDawg Rescue</a>
-        <a href="#herding-rescues">Herding Breed Rescues</a>
+        <a href="#shelters">Local Shelters</a>
+        <a href="#breed-rescues">Breed-Specific Rescues</a>
+        <a href="#search">Search Tools</a>
         <a href="#tips">Adoption Tips</a>
         <a href="index.html">Home</a>
     </nav>
@@ -147,13 +164,13 @@
 
         <div class="featured">
             <h3>RezDawg Rescue</h3>
-            <div class="subtitle">501(c)(3) &middot; Founded 2012 &middot; Four Corners Region (CO, NM, AZ)</div>
+            <div class="subtitle">501(c)(3) &middot; Founded 2012 &middot; Fosters in Denver/Boulder/CO Springs metro</div>
             <div style="margin-bottom: 12px;">
                 <span class="tag tag-green">Previously adopted from</span>
                 <span class="tag tag-blue">Foster-based</span>
-                <span class="tag tag-purple">Community-focused</span>
+                <span class="tag tag-purple">Places dogs locally in CO</span>
             </div>
-            <p>Founded by Angela Cerci while teaching on the Navajo Nation. RezDawg collaborates with Indigenous and rural communities throughout the Four Corners region, providing rescue, rehabilitation, fostering, and adoption services. They also run mobile spay/neuter clinics and community outreach.</p>
+            <p>Founded by Angela Cerci while teaching on the Navajo Nation. Rescues dogs from high-intake shelters and reservations across the Four Corners region (CO/NM/AZ), then places them in foster homes across the <strong>Denver/Boulder/Colorado Springs metro area</strong>. Listed on Petfinder out of Lafayette, CO.</p>
 
             <div class="stat-grid">
                 <div class="stat">
@@ -165,79 +182,153 @@
                     <div class="stat-label">Animals transported/year</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-val">2,500</div>
-                    <div class="stat-label">Spay/neuter surgeries/year</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-val">6,800</div>
-                    <div class="stat-label">Vaccinations/year</div>
-                </div>
-                <div class="stat">
                     <div class="stat-val">18,500+</div>
                     <div class="stat-label">Total animals helped since 2012</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-val">200K lbs</div>
-                    <div class="stat-label">Food/supplies distributed monthly</div>
-                </div>
             </div>
 
-            <h4 style="margin-top: 16px; color: #3a5a3a;">Adoption Details</h4>
-            <ul style="padding-left: 18px; margin-top: 8px;">
-                <li>All dogs are spayed/neutered, vaccinated, and microchipped</li>
-                <li><strong>$475</strong> adoption fee for dogs over 1 year</li>
-                <li><strong>$550</strong> adoption fee for puppies under 1 year</li>
-                <li>5-acre hub property 30 miles east of Albuquerque</li>
-                <li>Foster families can provide detailed behavioral info</li>
-            </ul>
-            <p style="margin-top: 12px;"><a class="ext" href="https://rezdawgrescue.org" target="_blank">rezdawgrescue.org</a></p>
+            <div class="details">
+                <p><strong>Adoption fees:</strong> $475 (dogs over 1 year) / $550 (puppies under 1 year)</p>
+                <p><strong>Included:</strong> Spayed/neutered, vaccinated, microchipped</p>
+                <p><strong>Contact:</strong> adopt@rezdawgrescue.org</p>
+                <p style="margin-top: 8px;"><a class="ext" href="https://rezdawgrescue.org" target="_blank">rezdawgrescue.org</a></p>
+            </div>
         </div>
 
-        <!-- ===== HERDING RESCUES ===== -->
-        <h2 id="herding-rescues">Herding Breed Rescues</h2>
-        <p style="margin-bottom: 16px;">If you're specifically looking for an Australian Shepherd, Border Collie, or herding mix, these organizations specialize in those breeds:</p>
+        <!-- ===== LOCAL SHELTERS ===== -->
+        <h2 id="shelters">Local Shelters</h2>
 
         <div class="rescue-card">
-            <h4>All Herding Breed Dog Rescue of Illinois</h4>
-            <div class="region">Joliet, IL &middot; All-volunteer 501(c)(3)</div>
-            <p>Rescued 385 dogs and adopted out 350 in a recent fiscal year. Covers all herding breeds.</p>
-        </div>
-
-        <div class="rescue-card">
-            <h4>ECHO Rescue (East Coast Herding-Dog Organization)</h4>
-            <div class="region">NYC / NJ Tri-State Area</div>
-            <p>Arranges foster homes for recovery and behavioral work before adoption. Good behavioral assessments.</p>
-        </div>
-
-        <div class="rescue-card">
-            <h4>Herd U Needed A Home</h4>
-            <div class="region">National</div>
-            <p>Focuses on Border Collies, Heelers, Australian Shepherds, and McNabs.</p>
+            <h4>Humane Colorado — Buddy Center</h4>
+            <div class="meta">4556 Castleton Ct, Castle Rock, CO 80109 &middot; ~15 min south</div>
+            <div style="margin-bottom: 8px;">
+                <span class="tag tag-green">Closest Major Shelter</span>
+                <span class="tag tag-blue">No-Kill</span>
+            </div>
+            <p>Full-service shelter (formerly Dumb Friends League). The closest large shelter to Highlands Ranch. Part of the largest community-based animal welfare org in the Rocky Mountain region — cares for 20,000+ pets annually.</p>
+            <div class="details">
+                <p><strong>Fees:</strong> Under 5 months $350 / 6–12 months $250 / 1–5 years $200 / 5+ years $100</p>
+                <p><strong>Phone:</strong> (303) 751-5772</p>
+                <p><a class="ext" href="https://humanecolorado.org/adoption/" target="_blank">humanecolorado.org/adoption</a></p>
+            </div>
         </div>
 
         <div class="rescue-card">
-            <h4>HeRD of Wyoming (Herding Rescue Dogs)</h4>
-            <div class="region">Wyoming &middot; Regional</div>
-            <p>Regional herding breed rescue. Closer to Colorado for easier adoption logistics.</p>
+            <h4>Humane Colorado — Denver</h4>
+            <div class="meta">2080 S Quebec St, Denver, CO 80231 &middot; ~20 min north</div>
+            <p>Main Denver campus. Same organization, larger facility with more animals available. Same fee structure as Buddy Center.</p>
+            <div class="details">
+                <p><a class="ext" href="https://humanecolorado.org/adoption/" target="_blank">humanecolorado.org/adoption</a></p>
+            </div>
         </div>
 
         <div class="rescue-card">
-            <h4>Central Coast Herding Dog Rescue</h4>
-            <div class="region">California &middot; Volunteer-run 501(c)(3)</div>
-            <p>Fosters and rescue partners statewide and beyond.</p>
+            <h4>Humane Society of the South Platte Valley</h4>
+            <div class="meta">Littleton/Englewood area &middot; ~15 min north</div>
+            <p>Serves the south Denver metro area directly adjacent to Highlands Ranch. Requires adoption application; meet-and-greet for homes with existing dogs.</p>
+            <div class="details">
+                <p><strong>Phone:</strong> (303) 703-2938</p>
+                <p><a class="ext" href="https://hsspv.org/adoptadog" target="_blank">hsspv.org/adoptadog</a></p>
+            </div>
         </div>
 
         <div class="rescue-card">
-            <h4>Helping Herders Rescue</h4>
-            <div class="region">Southern California &middot; Foster-based 501(c)(3)</div>
-            <p>Specializes in abandoned herding dogs.</p>
+            <h4>Denver Animal Shelter</h4>
+            <div class="meta">1241 W Bayaud Ave, Denver, CO 80223 &middot; ~25 min north</div>
+            <p>Municipal shelter with capacity for ~350 animals. Good option for finding mixed breeds at lower adoption fees.</p>
+        </div>
+
+        <div class="rescue-card">
+            <h4>MaxFund Dog Adoption Center</h4>
+            <div class="meta">1025 Galapago St, Denver, CO 80204 &middot; ~25 min north</div>
+            <p>No-kill shelter in central Denver.</p>
+        </div>
+
+        <div class="rescue-card">
+            <h4>Sloppy Kisses Animal Rescue</h4>
+            <div class="meta">Highlands Ranch &middot; Local</div>
+            <div style="margin-bottom: 8px;">
+                <span class="tag tag-green">In Your Town</span>
+            </div>
+            <p>Highlands Ranch-based rescue. Small, local foster network.</p>
+        </div>
+
+        <!-- ===== BREED-SPECIFIC ===== -->
+        <h2 id="breed-rescues">Colorado Breed-Specific Rescues</h2>
+
+        <div class="rescue-card">
+            <h4>Colorado Herding Dog Rescue (CHDR)</h4>
+            <div class="meta">Denver metro &middot; Foster-based 501(c)(3) &middot; Founded 2022</div>
+            <div style="margin-bottom: 8px;">
+                <span class="tag tag-blue">Aussies</span>
+                <span class="tag tag-blue">Border Collies</span>
+                <span class="tag tag-blue">Herding Breeds</span>
+            </div>
+            <p>Denver-based foster rescue specifically for Australian Shepherds, Border Collies, and other herding breeds. Founded by rescuers with 50+ combined years of experience.</p>
+            <div class="details">
+                <p><strong>Adoption donation:</strong> $350</p>
+                <p><a class="ext" href="https://www.coloradoherdingdogrescue.com/" target="_blank">coloradoherdingdogrescue.com</a></p>
+            </div>
+        </div>
+
+        <div class="rescue-card">
+            <h4>Golden Retriever Rescue of the Rockies (GRRR)</h4>
+            <div class="meta">Arvada, CO &middot; ~35 min northwest</div>
+            <div style="margin-bottom: 8px;">
+                <span class="tag tag-blue">Golden Retrievers</span>
+            </div>
+            <p>The primary Golden Retriever-specific rescue in Colorado.</p>
+            <div class="details">
+                <p><a class="ext" href="https://www.goldenrescue.com/" target="_blank">goldenrescue.com</a></p>
+            </div>
+        </div>
+
+        <div class="rescue-card">
+            <h4>Golden Retriever Freedom Rescue</h4>
+            <div class="meta">Denver area</div>
+            <div style="margin-bottom: 8px;">
+                <span class="tag tag-blue">Golden Retrievers</span>
+            </div>
+            <p>Denver-based Golden rescue.</p>
+            <div class="details">
+                <p><a class="ext" href="https://www.goldenretrieverfreedom.com/" target="_blank">goldenretrieverfreedom.com</a></p>
+            </div>
+        </div>
+
+        <div class="rescue-card">
+            <h4>Retriever Rescue of Colorado</h4>
+            <div class="meta">Evergreen/Denver area</div>
+            <div style="margin-bottom: 8px;">
+                <span class="tag tag-blue">Goldens</span>
+                <span class="tag tag-blue">Labs</span>
+                <span class="tag tag-blue">Retrievers</span>
+            </div>
+            <p>Covers Golden Retrievers, Labs, and other retriever breeds. Listed on Petfinder.</p>
+            <div class="details">
+                <p><a class="ext" href="https://retrieverrescueofcolorado.com/" target="_blank">retrieverrescueofcolorado.com</a></p>
+            </div>
+        </div>
+
+        <!-- ===== SEARCH TOOLS ===== -->
+        <h2 id="search">Search Tools</h2>
+        <p>Browse available dogs near 80129 across multiple shelters and rescues:</p>
+
+        <div class="search-tools">
+            <a href="https://www.petfinder.com/search/dogs-for-adoption/us/co/highlands-ranch/" target="_blank" class="search-tool">
+                <h4>Petfinder</h4>
+                <p>Filter by breed, size, age, and distance from Highlands Ranch. Aggregates listings from local shelters and rescues.</p>
+            </a>
+            <a href="https://www.adoptapet.com/animal-shelters/colorado/highlands-ranch" target="_blank" class="search-tool">
+                <h4>Adoptapet</h4>
+                <p>Browse shelters and available dogs near Highlands Ranch.</p>
+            </a>
         </div>
 
         <!-- ===== TIPS ===== -->
         <h2 id="tips">Adoption Tips</h2>
 
         <ol class="tip-list">
-            <li><strong>Assess your lifestyle honestly.</strong> Herding breeds need 1–2 hours of daily exercise plus mental stimulation. Make sure the idea of constantly challenging your dog's brain excites you.</li>
+            <li><strong>Assess your lifestyle honestly.</strong> Herding breeds need 1–2 hours of daily exercise plus mental stimulation. Goldens need 2+ hours. Make sure the idea of constantly challenging your dog excites you.</li>
             <li><strong>Ask for detailed behavioral info.</strong> Foster-based rescues know their dogs well — ask about behavior on walks, with other dogs, when left alone, and in a home environment.</li>
             <li><strong>Follow the 3-3-3 rule.</strong> Rescue dogs need about 3 days to decompress, 3 weeks to settle in, and 3 months to truly feel safe and bonded. Be patient.</li>
             <li><strong>Schedule a vet visit in the first week.</strong> Even with rescue-provided health records, get a fresh checkup. Ask about MDR1 gene testing for herding breeds.</li>

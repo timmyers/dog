@@ -61,7 +61,7 @@
         .card-header h3 { margin: 0; font-size: 1.2rem; }
 
         .comparison-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
         }
         .breed-card {
             background: white; border-radius: 12px;
@@ -149,7 +149,7 @@
         .back-link:hover { text-decoration: underline; }
 
         @media (max-width: 600px) {
-            .comparison-grid { grid-template-columns: 1fr; }
+            .comparison-grid { grid-template-columns: 1fr !important; }
             .alt-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 1.6rem; }
             .specs { gap: 16px; }
@@ -177,7 +177,7 @@
     </div>
 
     <nav>
-        <a href="#comparison">Aussie vs. Border Collie</a>
+        <a href="#comparison">Top Breeds</a>
         <a href="#size">Size</a>
         <a href="#traits">Trait Comparison</a>
         <a href="#health">Health</a>
@@ -190,8 +190,8 @@
         <a href="index.html" class="back-link">&larr; Back to Plan</a>
 
         <!-- ===== MAIN COMPARISON ===== -->
-        <h2 id="comparison">Australian Shepherd vs. Border Collie</h2>
-        <p>Both are top-tier herding breeds with exceptional intelligence and athleticism. Your friends' suggestions are excellent starting points — here's how they compare for your lifestyle.</p>
+        <h2 id="comparison">Top Breeds for Your Lifestyle</h2>
+        <p>Three standout breeds for an active, hiking-focused owner — each with different strengths.</p>
 
         <div class="comparison-grid" style="margin-top: 20px;">
             <div class="breed-card">
@@ -236,6 +236,27 @@
                     </ul>
                 </div>
             </div>
+            <div class="breed-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Golden_Retriever_standing_Tucker.jpg" alt="Golden Retriever">
+                <div class="breed-card-body">
+                    <h3>Golden Retriever</h3>
+                    <div class="subtitle">AKC Sporting Group</div>
+                    <div style="margin-bottom: 12px;">
+                        <span class="tag tag-green">Gentle</span>
+                        <span class="tag tag-green">Social</span>
+                        <span class="tag tag-blue">Eager to Please</span>
+                        <span class="tag tag-amber">Heavy Shedder</span>
+                    </div>
+                    <ul>
+                        <li>Gentle, loyal, patient — the classic family dog</li>
+                        <li>Needs 2+ hours of vigorous exercise daily</li>
+                        <li>Most universally friendly — great with other hikers/dogs</li>
+                        <li>Loves water crossings on trails</li>
+                        <li>55–75 lbs; medium-large build</li>
+                        <li>Shorter lifespan (10–12 yrs); high cancer risk</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- ===== SIZE ===== -->
@@ -267,6 +288,18 @@
                     <td>18–22 in</td>
                     <td>30–55 lbs</td>
                     <td>Lean, athletic</td>
+                </tr>
+                <tr>
+                    <td><strong>Golden (male)</strong></td>
+                    <td>23–24 in</td>
+                    <td>65–75 lbs</td>
+                    <td>Sturdy, balanced</td>
+                </tr>
+                <tr>
+                    <td><strong>Golden (female)</strong></td>
+                    <td>21.5–22.5 in</td>
+                    <td>55–65 lbs</td>
+                    <td>Sturdy, balanced</td>
                 </tr>
             </tbody>
         </table>
@@ -339,18 +372,25 @@
         <!-- ===== HEALTH ===== -->
         <h2 id="health">Health Considerations</h2>
         <div class="card">
-            <p>Both breeds have a lifespan of <strong>12–15 years</strong>.</p>
             <table>
                 <thead>
                     <tr>
                         <th>Concern</th>
                         <th>Aussie</th>
                         <th>Border Collie</th>
+                        <th>Golden</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td>Lifespan</td>
+                        <td><span class="tag tag-green">12–15 yrs</span></td>
+                        <td><span class="tag tag-green">12–15 yrs</span></td>
+                        <td><span class="tag tag-amber">10–12 yrs</span></td>
+                    </tr>
+                    <tr>
                         <td>Hip dysplasia</td>
+                        <td><span class="tag tag-amber">Risk</span></td>
                         <td><span class="tag tag-amber">Risk</span></td>
                         <td><span class="tag tag-amber">Risk</span></td>
                     </tr>
@@ -358,36 +398,42 @@
                         <td>Eye problems (PRA, cataracts)</td>
                         <td><span class="tag tag-amber">Risk</span></td>
                         <td><span class="tag tag-amber">Risk</span></td>
+                        <td><span class="tag tag-amber">Risk</span></td>
                     </tr>
                     <tr>
                         <td>MDR1 gene (drug sensitivity)</td>
                         <td><span class="tag tag-red">Common</span></td>
                         <td><span class="tag tag-amber">Risk</span></td>
+                        <td><span class="tag tag-green">Not typical</span></td>
                     </tr>
                     <tr>
                         <td>Epilepsy</td>
                         <td><span class="tag tag-amber">Risk</span></td>
                         <td><span class="tag tag-amber">Risk</span></td>
+                        <td><span class="tag tag-green">Low risk</span></td>
                     </tr>
                     <tr>
                         <td>Cancer</td>
                         <td><span class="tag tag-red">Higher risk</span></td>
                         <td><span class="tag tag-green">Lower risk</span></td>
+                        <td><span class="tag tag-red">~65% of deaths</span></td>
                     </tr>
                     <tr>
                         <td>Merle-to-merle concern</td>
                         <td><span class="tag tag-red">Yes</span></td>
                         <td><span class="tag tag-green">Less common</span></td>
+                        <td><span class="tag tag-green">N/A</span></td>
                     </tr>
                 </tbody>
             </table>
-            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;"><strong>MDR1 gene note:</strong> Both breeds can carry this mutation, which makes them sensitive to certain common medications (e.g., ivermectin). A simple DNA test can identify carriers — important to know for your vet.</p>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;"><strong>MDR1 gene note:</strong> Herding breeds can carry this mutation, making them sensitive to certain medications (e.g., ivermectin). A simple DNA test can identify carriers.</p>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 6px;"><strong>Golden cancer note:</strong> Up to 65% of Golden Retriever deaths are cancer-related (hemangiosarcoma, lymphoma). This is the breed's most significant health concern and a real consideration vs. the longer-lived herding breeds.</p>
         </div>
 
         <!-- ===== VERDICT ===== -->
         <h2 id="verdict">Hiking Companion Verdict</h2>
         <div class="verdict">
-            <strong>For your lifestyle, the Australian Shepherd has a slight edge.</strong> Both breeds are superb hiking companions and brilliant dogs. The Aussie tends to be friendlier with strangers on trails, more adaptable to different environments, and slightly more forgiving day-to-day — while still being exceptionally athletic and intelligent. The Border Collie is the more intense athlete and arguably smarter, but demands more constant mental engagement and can be more challenging for a first-time herding-breed owner.
+            <strong>For your lifestyle, the Australian Shepherd has a slight edge.</strong> The Aussie is friendlier with strangers on trails, more adaptable, and slightly more forgiving day-to-day — while still being exceptionally athletic and intelligent. The Border Collie is the more intense athlete and arguably smarter, but demands more constant mental engagement. The Golden Retriever is the most universally social and easygoing, but the shorter lifespan (10–12 vs. 12–15 years) and very high cancer risk are real downsides.
         </div>
         <div class="verdict" style="border-left-color: #1565c0; background: #e3f2fd;">
             <strong>Rescue/mix perspective:</strong> Many dogs from rescues like RezDawg will be mixes, which often means the best of both worlds — herding-breed intelligence and athleticism with potentially fewer breed-specific health issues ("hybrid vigor"). Don't fixate too much on pure breeds; a herding mix from a rescue can be an incredible companion.
