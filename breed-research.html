@@ -64,9 +64,14 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
         }
         .breed-card {
-            background: white; border-radius: 12px; padding: 24px;
+            background: white; border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
         }
+        .breed-card img {
+            width: 100%; height: 220px; object-fit: cover;
+        }
+        .breed-card-body { padding: 20px 24px 24px; }
         .breed-card h3 {
             margin: 0 0 4px; font-size: 1.25rem; color: #4a6741;
         }
@@ -118,16 +123,24 @@
         }
         .verdict strong { color: #4a6741; }
 
-        .alt-breed {
-            background: white; border-radius: 12px; padding: 20px 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 14px;
-            border-left: 4px solid #6b8f71;
+        .alt-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
         }
+        .alt-breed {
+            background: white; border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .alt-breed img {
+            width: 100%; height: 200px; object-fit: cover;
+        }
+        .alt-breed-body { padding: 18px 22px 22px; }
         .alt-breed h4 {
-            font-size: 1.05rem; color: #4a6741; margin-bottom: 4px;
+            font-size: 1.1rem; color: #4a6741; margin-bottom: 4px;
         }
         .alt-breed .weight { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
         .alt-breed p { font-size: 0.93rem; }
+        .alt-breed .tags { margin-top: 10px; }
 
         .back-link {
             display: inline-block; margin-bottom: 20px; color: #4a6741;
@@ -137,6 +150,7 @@
 
         @media (max-width: 600px) {
             .comparison-grid { grid-template-columns: 1fr; }
+            .alt-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 1.6rem; }
             .specs { gap: 16px; }
         }
@@ -181,40 +195,46 @@
 
         <div class="comparison-grid" style="margin-top: 20px;">
             <div class="breed-card">
-                <h3>Australian Shepherd</h3>
-                <div class="subtitle">AKC Herding Group</div>
-                <div style="margin-bottom: 12px;">
-                    <span class="tag tag-green">Friendly</span>
-                    <span class="tag tag-blue">Versatile</span>
-                    <span class="tag tag-green">Adaptable</span>
-                    <span class="tag tag-purple">Protective</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Australian_Shepherd_red_bi.JPG/960px-Australian_Shepherd_red_bi.JPG" alt="Australian Shepherd">
+                <div class="breed-card-body">
+                    <h3>Australian Shepherd</h3>
+                    <div class="subtitle">AKC Herding Group</div>
+                    <div style="margin-bottom: 12px;">
+                        <span class="tag tag-green">Friendly</span>
+                        <span class="tag tag-blue">Versatile</span>
+                        <span class="tag tag-green">Adaptable</span>
+                        <span class="tag tag-purple">Protective</span>
+                    </div>
+                    <ul>
+                        <li>High-energy, playful, and athletic</li>
+                        <li>More sociable with strangers — relaxed on busy trails</li>
+                        <li>Protective of their people, gentle with kids</li>
+                        <li>Versatile: excels at agility, obedience, and outdoor sports</li>
+                        <li>Slightly more forgiving if you miss a training session</li>
+                        <li>Settles down more easily at end of day</li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>High-energy, playful, and athletic</li>
-                    <li>More sociable with strangers — relaxed on busy trails</li>
-                    <li>Protective of their people, gentle with kids</li>
-                    <li>Versatile: excels at agility, obedience, and outdoor sports</li>
-                    <li>Slightly more forgiving if you miss a training session</li>
-                    <li>Settles down more easily at end of day</li>
-                </ul>
             </div>
             <div class="breed-card">
-                <h3>Border Collie</h3>
-                <div class="subtitle">AKC Herding Group</div>
-                <div style="margin-bottom: 12px;">
-                    <span class="tag tag-blue">Smartest Breed</span>
-                    <span class="tag tag-amber">Intense</span>
-                    <span class="tag tag-green">Affectionate</span>
-                    <span class="tag tag-purple">Work-driven</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Border_Collie_600.jpg" alt="Border Collie">
+                <div class="breed-card-body">
+                    <h3>Border Collie</h3>
+                    <div class="subtitle">AKC Herding Group</div>
+                    <div style="margin-bottom: 12px;">
+                        <span class="tag tag-blue">Smartest Breed</span>
+                        <span class="tag tag-amber">Intense</span>
+                        <span class="tag tag-green">Affectionate</span>
+                        <span class="tag tag-purple">Work-driven</span>
+                    </div>
+                    <ul>
+                        <li>Ranked #1 most intelligent dog breed</li>
+                        <li>Obsessive work ethic — "workaholics"</li>
+                        <li>Bonds closely but can be wary of strangers</li>
+                        <li>Will herd everything that moves (including kids)</li>
+                        <li>Needs constant mental challenges to stay happy</li>
+                        <li>More intense athlete; leaner build</li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>Ranked #1 most intelligent dog breed</li>
-                    <li>Obsessive work ethic — "workaholics"</li>
-                    <li>Bonds closely but can be wary of strangers</li>
-                    <li>Will herd everything that moves (including kids)</li>
-                    <li>Needs constant mental challenges to stay happy</li>
-                    <li>More intense athlete; leaner build</li>
-                </ul>
             </div>
         </div>
 
@@ -375,36 +395,73 @@
 
         <!-- ===== ALTERNATIVES ===== -->
         <h2 id="alternatives">Other Breeds Worth Considering</h2>
-        <p style="margin-bottom: 16px;">If you're open to exploring beyond Aussies and Border Collies, these breeds also fit the intelligent/active/medium-sized/hiking profile:</p>
+        <p style="margin-bottom: 20px;">If you're open to exploring beyond Aussies and Border Collies, these breeds also fit the intelligent/active/medium-sized/hiking profile:</p>
 
-        <div class="alt-breed">
-            <h4>Nova Scotia Duck Tolling Retriever</h4>
-            <div class="weight">35–50 lbs &middot; Sporting Group</div>
-            <p>Active, curious, athletic. Excellent for long trail days. Slightly less intense than herding breeds — a good option if you want the energy without the herding obsessiveness. Affectionate and outgoing.</p>
-        </div>
+        <div class="alt-grid">
+            <div class="alt-breed">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Duck_Toller.jpg" alt="Nova Scotia Duck Tolling Retriever">
+                <div class="alt-breed-body">
+                    <h4>Nova Scotia Duck Tolling Retriever</h4>
+                    <div class="weight">35–50 lbs &middot; Sporting Group</div>
+                    <p>Active, curious, athletic. Excellent for long trail days. Slightly less intense than herding breeds — a good option if you want the energy without the herding obsessiveness. Affectionate and outgoing.</p>
+                    <div class="tags">
+                        <span class="tag tag-green">Great Hiking</span>
+                        <span class="tag tag-blue">Less Intense</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="alt-breed">
-            <h4>Brittany</h4>
-            <div class="weight">30–40 lbs &middot; Sporting Group</div>
-            <p>Highly energetic, versatile, and trainable. Wonderful in the house and on the trail. Less "herding obsessive" than Border Collies but equally athletic. Great with families.</p>
-        </div>
+            <div class="alt-breed">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Brittany_Spaniel_standing.jpg/960px-Brittany_Spaniel_standing.jpg" alt="Brittany">
+                <div class="alt-breed-body">
+                    <h4>Brittany</h4>
+                    <div class="weight">30–40 lbs &middot; Sporting Group</div>
+                    <p>Highly energetic, versatile, and trainable. Wonderful in the house and on the trail. Less "herding obsessive" than Border Collies but equally athletic. Great with families.</p>
+                    <div class="tags">
+                        <span class="tag tag-green">Family Friendly</span>
+                        <span class="tag tag-blue">Versatile</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="alt-breed">
-            <h4>Vizsla</h4>
-            <div class="weight">45–65 lbs &middot; Sporting Group</div>
-            <p>Exceptional athletes often called "velcro dogs" for their intense owner bonding. Beautiful, affectionate. Caveat: they do not tolerate separation well — best for owners who spend lots of time with their dog.</p>
-        </div>
+            <div class="alt-breed">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Wy%C5%BCe%C5%82_w%C4%99gierski_g%C5%82adkow%C5%82osy_500.jpg/960px-Wy%C5%BCe%C5%82_w%C4%99gierski_g%C5%82adkow%C5%82osy_500.jpg" alt="Vizsla">
+                <div class="alt-breed-body">
+                    <h4>Vizsla</h4>
+                    <div class="weight">45–65 lbs &middot; Sporting Group</div>
+                    <p>Exceptional athletes often called "velcro dogs" for their intense owner bonding. Beautiful, affectionate. Caveat: they do not tolerate separation well — best for owners who spend lots of time with their dog.</p>
+                    <div class="tags">
+                        <span class="tag tag-green">Velcro Dog</span>
+                        <span class="tag tag-amber">Needs Companionship</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="alt-breed">
-            <h4>German Shorthaired Pointer</h4>
-            <div class="weight">50–70 lbs &middot; Sporting Group</div>
-            <p>Incredibly athletic, friendly, and trainable. Built for endurance. Very versatile and good-natured. On the larger end of medium but an outstanding hiking partner.</p>
-        </div>
+            <div class="alt-breed">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Duitse_staande_korthaar_10-10-2.jpg" alt="German Shorthaired Pointer">
+                <div class="alt-breed-body">
+                    <h4>German Shorthaired Pointer</h4>
+                    <div class="weight">50–70 lbs &middot; Sporting Group</div>
+                    <p>Incredibly athletic, friendly, and trainable. Built for endurance. Very versatile and good-natured. On the larger end of medium but an outstanding hiking partner.</p>
+                    <div class="tags">
+                        <span class="tag tag-green">Endurance</span>
+                        <span class="tag tag-blue">Athletic</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="alt-breed">
-            <h4>Standard Poodle</h4>
-            <div class="weight">40–70 lbs &middot; Non-Sporting Group</div>
-            <p>Often overlooked as athletic dogs, but they're natural athletes with high intelligence. Major advantage: non-shedding coat. Great stamina on trails.</p>
+            <div class="alt-breed" style="grid-column: 1 / -1; max-width: calc(50% - 10px);">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Full_attention_%288067543690%29.jpg/960px-Full_attention_%288067543690%29.jpg" alt="Standard Poodle">
+                <div class="alt-breed-body">
+                    <h4>Standard Poodle</h4>
+                    <div class="weight">40–70 lbs &middot; Non-Sporting Group</div>
+                    <p>Often overlooked as athletic dogs, but they're natural athletes with high intelligence. Major advantage: non-shedding coat. Great stamina on trails.</p>
+                    <div class="tags">
+                        <span class="tag tag-green">Non-Shedding</span>
+                        <span class="tag tag-blue">Highly Intelligent</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
