@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Adoption Plan</title>
+    <title>Ilia — Dog Care Plan</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -21,6 +21,22 @@
         .hero h1 { font-size: 2.4rem; margin-bottom: 8px; }
         .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
         .container { max-width: 840px; margin: 0 auto; padding: 40px 20px; }
+
+        .profile {
+            background: white; border-radius: 12px; padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 30px;
+            border-left: 5px solid #4a6741;
+            text-align: center;
+        }
+        .profile h2 { font-size: 1.5rem; color: #4a6741; margin-bottom: 4px; }
+        .profile .subtitle { font-size: 0.95rem; color: #888; margin-bottom: 12px; }
+        .profile .tag {
+            display: inline-block; font-size: 0.75rem; padding: 2px 8px;
+            border-radius: 4px; font-weight: 600; margin: 2px;
+        }
+        .tag-green { background: #e8f5e9; color: #2e7d32; }
+        .tag-blue { background: #e3f2fd; color: #1565c0; }
+
         .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
         .card {
             background: white;
@@ -35,40 +51,48 @@
         .card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
         .card h2 { font-size: 1.2rem; margin-bottom: 8px; color: #4a6741; }
         .card p { font-size: 0.95rem; color: #555; }
-        .tag {
+        .tag-active { background: #e8f5e9; color: #2e7d32; }
+        .tag-planned { background: #fff3e0; color: #e65100; }
+        .card .tag {
             display: inline-block; font-size: 0.75rem; padding: 2px 8px;
             border-radius: 4px; margin-top: 10px; font-weight: 600;
         }
-        .tag-active { background: #e8f5e9; color: #2e7d32; }
-        .tag-planned { background: #fff3e0; color: #e65100; }
         @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } .hero h1 { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
     <div class="hero">
-        <h1>Dog Adoption Plan</h1>
-        <p>Research, planning, and preparation for adopting and caring for a dog in Colorado</p>
+        <h1>Ilia</h1>
+        <p>Care, training, and adventure planning for our new pup</p>
     </div>
     <div class="container">
+        <div class="profile">
+            <h2>Eli aka Ilia</h2>
+            <div class="subtitle">Australian Shepherd mix &middot; Puppy &middot; Adopted March 2026</div>
+            <span class="tag tag-green">Adopted!</span>
+            <span class="tag tag-blue">Aussie Mix</span>
+            <span class="tag tag-blue">Herding Breed</span>
+        </div>
+
         <div class="cards">
             <a href="breed-research.html" class="card">
                 <h2>Breed Research</h2>
-                <p>Australian Shepherd vs. Border Collie comparison, plus other breeds suited for an active hiking lifestyle.</p>
-                <span class="tag tag-active">Active</span>
+                <p>Australian Shepherd traits, health considerations, and what to expect from a herding breed mix.</p>
+                <span class="tag tag-active">Reference</span>
             </a>
             <a href="adoption-sources.html" class="card">
-                <h2>Adoption Sources</h2>
-                <p>RezDawg Rescue, herding breed rescues, and tips for finding the right dog to adopt.</p>
-                <span class="tag tag-active">Active</span>
+                <h2>Adoption Story</h2>
+                <p>How we found Ilia — from Wagtopia listing to adoption day.</p>
+                <span class="tag tag-active">Complete</span>
             </a>
             <a href="#" class="card" style="opacity: 0.6; pointer-events: none;">
                 <h2>Care & Training</h2>
-                <p>Nutrition, veterinary care, training fundamentals, and socialization planning.</p>
+                <p>Nutrition, vet care, training plan, and socialization for Ilia.</p>
                 <span class="tag tag-planned">Planned</span>
             </a>
             <a href="#" class="card" style="opacity: 0.6; pointer-events: none;">
                 <h2>Hiking Readiness</h2>
-                <p>Trail conditioning, gear, Colorado-specific hazards, and favorite dog-friendly trails.</p>
+                <p>Trail conditioning, gear, Colorado hazards, and dog-friendly trails.</p>
                 <span class="tag tag-planned">Planned</span>
             </a>
         </div>

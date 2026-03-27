@@ -1,14 +1,14 @@
-# Dog Adoption & Care Planning
+# Ilia — Dog Care Plan
 
 ## Overview
-Personal project to plan and prepare for adopting a dog — breed research, adoption sourcing, care planning, and hiking/outdoor preparation. Deployed as a static HTML site on Cloudflare Pages.
+Care, training, and adventure planning for Ilia (Eli aka Ilia), an Australian Shepherd mix puppy adopted March 2026 through RezDawg Rescue. Found on Wagtopia.
 
 ## Location
-Highlands Ranch, CO (same as yard26 project)
+Highlands Ranch, CO 80129
 
 ## Tech Stack
 - Static HTML with inline CSS (no framework, no build step)
-- Deployed on Cloudflare Pages
+- Deployed on Cloudflare Pages (auto-deploys on git push)
 - Same design patterns as the yard26 sibling project
 
 ## Design Conventions
@@ -22,7 +22,7 @@ Highlands Ranch, CO (same as yard26 project)
 - No JavaScript frameworks; self-contained HTML documents
 
 ## Content
-- Breed comparison research (Australian Shepherd, Border Collie, others)
-- Adoption resources (RezDawg Rescue, herding breed rescues)
-- Care and training planning
-- Hiking preparation and trail-readiness
+- Breed research (Australian Shepherd traits, health, comparison with other breeds)
+- Adoption story (RezDawg Rescue, Wagtopia, how we found Ilia)
+- Care and training planning (planned)
+- Hiking preparation and trail-readiness (planned)
