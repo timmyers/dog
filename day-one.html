@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day One Plan — Ilia</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f5f0eb;
+            color: #2d2d2d;
+            line-height: 1.65;
+        }
+        .hero {
+            background: linear-gradient(135deg, #4a6741 0%, #6b8f71 50%, #8fb996 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px 40px;
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 6px; }
+        .hero p { font-size: 1.05rem; opacity: 0.9; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e0e0e0;
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 6px;
+            padding: 10px 16px;
+        }
+        nav a {
+            text-decoration: none; color: #4a6741; font-size: 0.85rem;
+            font-weight: 600; padding: 4px 12px; border-radius: 6px;
+            transition: background 0.15s;
+        }
+        nav a:hover { background: #e8f5e9; }
+
+        .container { max-width: 840px; margin: 0 auto; padding: 30px 20px 60px; }
+
+        h2 {
+            font-size: 1.5rem; color: #4a6741; margin: 40px 0 16px;
+            padding-bottom: 8px; border-bottom: 2px solid #c8e6c9;
+        }
+        h2:first-of-type { margin-top: 10px; }
+        h3 { font-size: 1.15rem; color: #3a5a3a; margin: 24px 0 10px; }
+
+        .card {
+            background: white; border-radius: 12px; padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px;
+        }
+        .card h3 { margin-top: 0; }
+
+        .tag {
+            display: inline-block; font-size: 0.72rem; padding: 2px 8px;
+            border-radius: 4px; font-weight: 600; margin-right: 4px; margin-bottom: 4px;
+        }
+        .tag-green { background: #e8f5e9; color: #2e7d32; }
+        .tag-blue { background: #e3f2fd; color: #1565c0; }
+        .tag-amber { background: #fff3e0; color: #e65100; }
+        .tag-red { background: #fce4ec; color: #c62828; }
+
+        .checklist { list-style: none; padding: 0; }
+        .checklist li {
+            padding: 10px 14px 10px 36px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.93rem;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li::before {
+            content: ''; position: absolute; left: 10px; top: 13px;
+            width: 16px; height: 16px; border: 2px solid #c8e6c9;
+            border-radius: 3px;
+        }
+        .checklist li.inherited::before {
+            content: '✓'; border-color: #4a6741; background: #e8f5e9;
+            color: #4a6741; font-size: 0.7rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .checklist .note { font-size: 0.82rem; color: #888; display: block; margin-top: 2px; }
+        .checklist .rec { font-size: 0.82rem; color: #4a6741; font-weight: 600; }
+
+        table {
+            width: 100%; border-collapse: collapse; margin: 14px 0;
+            font-size: 0.92rem;
+        }
+        th {
+            text-align: left; padding: 10px 12px; background: #f1f8e9;
+            color: #4a6741; font-weight: 600; border-bottom: 2px solid #c8e6c9;
+        }
+        td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+        tr:hover td { background: #fafafa; }
+
+        .schedule-block {
+            background: white; border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 16px;
+            overflow: hidden;
+        }
+        .schedule-header {
+            background: #f1f8e9; padding: 12px 20px;
+            font-weight: 700; color: #4a6741; font-size: 1rem;
+        }
+        .schedule-items { padding: 6px 20px 14px; }
+        .schedule-item {
+            padding: 8px 0; border-bottom: 1px solid #f0f0f0;
+            font-size: 0.93rem;
+        }
+        .schedule-item:last-child { border-bottom: none; }
+        .schedule-item strong { color: #3a5a3a; }
+
+        .warning {
+            background: #fff3e0; border-left: 4px solid #e65100;
+            padding: 16px 20px; border-radius: 0 8px 8px 0;
+            margin: 20px 0; font-size: 0.93rem;
+        }
+        .warning strong { color: #e65100; }
+
+        .danger {
+            background: #fce4ec; border-left: 4px solid #c62828;
+            padding: 16px 20px; border-radius: 0 8px 8px 0;
+            margin: 20px 0; font-size: 0.93rem;
+        }
+        .danger strong { color: #c62828; }
+
+        .tip {
+            background: #f1f8e9; border-left: 4px solid #4a6741;
+            padding: 16px 20px; border-radius: 0 8px 8px 0;
+            margin: 20px 0; font-size: 0.93rem;
+        }
+        .tip strong { color: #4a6741; }
+
+        .back-link {
+            display: inline-block; margin-bottom: 20px; color: #4a6741;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Day One Plan</h1>
+        <p>Supplies, feeding, and first-day schedule for Ilia</p>
+    </div>
+
+    <nav>
+        <a href="#supplies">Supplies</a>
+        <a href="#feeding">Feeding Plan</a>
+        <a href="#toxic">Toxic Foods</a>
+        <a href="#schedule">Day One Schedule</a>
+        <a href="#rules">Ground Rules</a>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+
+        <!-- ===== SUPPLIES ===== -->
+        <h2 id="supplies">Supplies Checklist</h2>
+        <p style="margin-bottom: 6px;">Check off what you already have from inherited stuff. Items marked <span class="tag tag-green">may have</span> are things commonly passed along.</p>
+
+        <div class="card">
+            <h3>Sleeping &amp; Crate</h3>
+            <ul class="checklist">
+                <li>42" wire crate with divider panel <span class="note">MidWest iCrate or Life Stages. Divider lets you size up as she grows toward 40-55 lbs.</span></li>
+                <li>Crate pad/mat <span class="note">Chew-resistant, flat — avoid loose stuffing for now</span></li>
+                <li>Snuggle Puppy heartbeat toy <span class="note">Helps first few nights away from littermates</span></li>
+                <li>Light blanket or old t-shirt <span class="note">Familiar scent from foster if possible</span></li>
+                <li>Exercise pen (36" tall) <span class="note">Safe contained area when you can't supervise directly</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Feeding</h3>
+            <ul class="checklist">
+                <li>Stainless steel bowls (2) <span class="note">Non-tip, non-slip. One food, one water. Not plastic — harbors bacteria.</span></li>
+                <li>Puppy food — rescue's current brand <span class="note">Ask what she's been eating — you'll transition gradually over 10-14 days</span></li>
+                <li>Puppy food — your chosen brand <span class="note">See feeding plan below for recommendations</span></li>
+                <li>Airtight food storage container</li>
+                <li>Collapsible travel water bowl <span class="note">For hikes once vaccinations complete</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Training</h3>
+            <ul class="checklist">
+                <li>6-foot leash (nylon or biothane) <span class="note">Not retractable</span></li>
+                <li>Flat buckle collar (small/medium) <span class="note">Attach ID tag immediately</span></li>
+                <li>ID tag <span class="note">Your name, phone, address. Same-day at PetSmart/Petco.</span></li>
+                <li>Front-clip harness <span class="note">Ruffwear Front Range or Blue-9 Balance, size Small. Better than collar for puppy walks.</span></li>
+                <li>Long line (15-30 ft) <span class="note">For recall practice. Biothane is lightweight and easy to clean.</span></li>
+                <li>Training treats <span class="note">Zuke's Mini Naturals, boiled chicken, or string cheese. Keep to 10% of daily calories.</span></li>
+                <li>Treat pouch <span class="note">Clips to waist for easy access</span></li>
+                <li>Clicker (optional) <span class="note">Karen Pryor i-Click</span></li>
+                <li>Enzymatic cleaner <span class="note rec">ESSENTIAL. Nature's Miracle or Rocco &amp; Roxie. Regular cleaners don't remove scent to a dog's nose.</span></li>
+                <li>Puppy pads <span class="note">Emergency indoor use, nighttime, bad weather</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Safety &amp; Puppy-Proofing</h3>
+            <ul class="checklist">
+                <li>Baby gates (2-3) <span class="note">Block stairs and off-limits rooms</span></li>
+                <li>Bitter apple spray <span class="note">Grannick's. For furniture, cords, baseboards.</span></li>
+                <li>Cord covers <span class="note">Electrical cords are a serious chewing hazard</span></li>
+                <li>Secure trash cans <span class="note">Locking lids or behind closed doors</span></li>
+                <li>Remove toxic plants <span class="note">Aloe vera, ivy, lilies, pothos, sago palm</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Grooming</h3>
+            <ul class="checklist">
+                <li>Slicker brush <span class="note">Aussie double coat needs brushing 3-4x/week. Hertzko Self-Cleaning or Chris Christensen.</span></li>
+                <li>Steel comb <span class="note">For tangles behind ears and chest</span></li>
+                <li>Puppy shampoo <span class="note">Burt's Bees or Earthbath. Bathe once a month max.</span></li>
+                <li>Nail clippers or grinder <span class="note">Start handling paws early to desensitize</span></li>
+                <li>Styptic powder (Kwik Stop) <span class="note">In case you nick the quick</span></li>
+                <li>Ear cleaning solution <span class="note">Virbac Epi-Otic</span></li>
+                <li>Dog toothbrush + enzymatic toothpaste <span class="note">Never human toothpaste. Start dental habits early.</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Outdoor &amp; Walking</h3>
+            <ul class="checklist">
+                <li>Poop bags + dispenser <span class="note">Highlands Ranch has strict pet waste ordinances on trails</span></li>
+                <li>Reflective collar clip or light <span class="note">For evening walks</span></li>
+                <li>Puppy jacket <span class="note">March mornings in HR are still cold at 5,900 ft. Ruffwear or Kurgo.</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Health — First Week</h3>
+            <ul class="checklist">
+                <li>Vet visit within 2-3 days <span class="note">Highlands Ranch Animal Clinic (38 W Springer Dr, AAHA-certified) or Inspire Animal Hospital</span></li>
+                <li>Vaccination records from RezDawg</li>
+                <li>Confirm microchip + update registration to your info</li>
+                <li>Pet insurance <span class="note">Enroll day one — Trupanion, Healthy Paws, or Lemonade. Most have waiting periods.</span></li>
+                <li>Flea/tick/heartworm prevention <span class="note">Vet will recommend. CO has ticks on foothill trails. Simparica Trio covers fleas, ticks, heartworm in one chew.</span></li>
+                <li>MDR1 gene test <span class="note">Ask vet — herding breeds can be sensitive to common medications</span></li>
+            </ul>
+        </div>
+
+        <!-- ===== FEEDING ===== -->
+        <h2 id="feeding">Feeding Plan</h2>
+
+        <div class="card">
+            <h3>Recommended Puppy Foods</h3>
+            <p style="margin-bottom: 12px;">Look for AAFCO "Growth" or "All Life Stages" statement. Active herding breeds need quality protein-forward food.</p>
+            <table>
+                <thead>
+                    <tr><th>Brand &amp; Formula</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Purina Pro Plan Puppy Shredded Blend</strong></td><td>Vet-recommended, DHA for brain development</td></tr>
+                    <tr><td><strong>Royal Canin Medium Puppy</strong></td><td>Formulated for 23-55 lb adult weight — perfect fit</td></tr>
+                    <tr><td><strong>Purina Pro Plan Sport 30/20</strong></td><td>Higher protein/fat for very active Aussie mixes</td></tr>
+                    <tr><td><strong>The Farmer's Dog</strong></td><td>Fresh, human-grade, portioned. More expensive but high quality.</td></tr>
+                </tbody>
+            </table>
+            <div class="warning">
+                <strong>Avoid grain-free diets</strong> unless your vet specifically recommends one. The FDA has investigated a link between grain-free diets and dilated cardiomyopathy (DCM) in dogs.
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Feeding Schedule by Age</h3>
+            <table>
+                <thead>
+                    <tr><th>Age</th><th>Meals/Day</th><th>Approx. Daily Amount</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>8–10 weeks</td><td>4 meals</td><td>3/4 – 1.5 cups total</td></tr>
+                    <tr><td>10–12 weeks</td><td>3–4 meals</td><td>1 – 2 cups total</td></tr>
+                    <tr><td>3–6 months</td><td>3 meals</td><td>1.5 – 3 cups total</td></tr>
+                    <tr><td>6–12 months</td><td>2 meals</td><td>2 – 4 cups total</td></tr>
+                    <tr><td>12+ months</td><td>2 meals</td><td>Transition to adult food</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Always follow the bag's feeding chart — calorie density varies by brand. Adjust based on body condition: you should feel ribs easily but not see them prominently.</p>
+        </div>
+
+        <div class="card">
+            <h3>Food Transition (10-14 days)</h3>
+            <p style="margin-bottom: 10px;">When switching from whatever RezDawg was feeding to your chosen food:</p>
+            <table>
+                <thead>
+                    <tr><th>Days</th><th>Old Food</th><th>New Food</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1–3</td><td>75%</td><td>25%</td></tr>
+                    <tr><td>4–6</td><td>50%</td><td>50%</td></tr>
+                    <tr><td>7–9</td><td>25%</td><td>75%</td></tr>
+                    <tr><td>10–14</td><td>0%</td><td>100%</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">If you see soft stool or vomiting, slow down and extend each phase by 2-3 days.</p>
+        </div>
+
+        <div class="card">
+            <h3>Training Treats</h3>
+            <p style="margin-bottom: 8px;">Keep treats to <strong>10% of daily calories</strong>. Best options:</p>
+            <ul style="padding-left: 18px;">
+                <li><strong>Zuke's Mini Naturals</strong> — ~3 cal each, soft, easy to break smaller</li>
+                <li><strong>Plain boiled chicken breast</strong> — pea-sized pieces, high value, no additives</li>
+                <li><strong>String cheese</strong> — small pieces, high-value for tough training moments</li>
+                <li><strong>Baby carrots or blueberries</strong> — low-calorie, good for teething</li>
+                <li><strong>Pupford Freeze-Dried</strong> — 1 cal each, single ingredient</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Water</h3>
+            <ul style="padding-left: 18px;">
+                <li>Fresh water available at all times during the day</li>
+                <li>Guideline: 1/2 to 1 oz per pound of body weight per day</li>
+                <li>Highlands Ranch is dry at 5,900 ft — she may drink more than average</li>
+                <li><strong>Pick up water bowl 2-3 hours before bedtime</strong> to reduce overnight accidents</li>
+                <li>After play, let her drink but don't allow gulping large amounts at once</li>
+            </ul>
+        </div>
+
+        <!-- ===== TOXIC FOODS ===== -->
+        <h2 id="toxic">Toxic Foods — Never Feed</h2>
+
+        <div class="danger">
+            <strong>Most dangerous (can be fatal):</strong>
+            <ul style="padding-left: 18px; margin-top: 8px;">
+                <li><strong>Xylitol</strong> — in sugar-free gum, candy, some peanut butters. Always check labels.</li>
+                <li><strong>Chocolate</strong> — dark/baker's worst. Causes seizures, heart failure.</li>
+                <li><strong>Grapes &amp; raisins</strong> — acute kidney failure, even small amounts.</li>
+                <li><strong>Onions, garlic, leeks, chives</strong> — damage red blood cells. Cooked or raw.</li>
+                <li><strong>Macadamia nuts</strong> — weakness, tremors, hyperthermia.</li>
+                <li><strong>Alcohol</strong> — even small amounts dangerous.</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>Also dangerous:</strong> cooked bones (splinter), avocado, caffeine, yeast dough, fatty trimmings/bacon grease (pancreatitis), corn cobs (blockage).
+        </div>
+
+        <div class="tip">
+            <strong>Emergency contacts:</strong><br>
+            ASPCA Poison Control: <strong>(888) 426-4435</strong><br>
+            Pet Poison Helpline: <strong>(855) 764-7661</strong>
+        </div>
+
+        <!-- ===== SCHEDULE ===== -->
+        <h2 id="schedule">Day One Schedule</h2>
+
+        <div class="schedule-block">
+            <div class="schedule-header">Arrival</div>
+            <div class="schedule-items">
+                <div class="schedule-item"><strong>Car ride home:</strong> Keep calm. Bring towel, paper towels, water, treats. Crate or carrier in the car is safest. She may get carsick.</div>
+                <div class="schedule-item"><strong>First stop:</strong> Go DIRECTLY to the designated potty spot in the yard. Stand quietly, let her sniff. Praise and treat immediately when she goes.</div>
+                <div class="schedule-item"><strong>First 30 min:</strong> Let her explore ONE room (main living area). Keep it low-key. No overwhelming introductions.</div>
+                <div class="schedule-item"><strong>Water &amp; food:</strong> Show her the water bowl. Offer a small meal if it's been a few hours. Don't worry if she won't eat — stress suppresses appetite.</div>
+            </div>
+        </div>
+
+        <div class="schedule-block">
+            <div class="schedule-header">Morning — Settling In</div>
+            <div class="schedule-items">
+                <div class="schedule-item"><strong>Every 30 min:</strong> Take her outside to the SAME potty spot. Praise/treat for success. No punishment for accidents.</div>
+                <div class="schedule-item"><strong>Crate intro:</strong> Place treats inside the open crate. Let her walk in and out freely. Feed a small meal inside with the door open. Don't close the door yet.</div>
+                <div class="schedule-item"><strong>Short play:</strong> 10-15 minutes of gentle play, then enforced rest. Puppies need 18-20 hours of sleep per day. Overtired puppies get nippy and wild.</div>
+            </div>
+        </div>
+
+        <div class="schedule-block">
+            <div class="schedule-header">Midday</div>
+            <div class="schedule-items">
+                <div class="schedule-item"><strong>Meal:</strong> Feed in or near the crate.</div>
+                <div class="schedule-item"><strong>Potty:</strong> Immediately after eating — puppies almost always need to go within 5-15 min of a meal.</div>
+                <div class="schedule-item"><strong>Nap:</strong> Encourage a nap in the crate. Briefly close the door while you sit nearby. Open before she gets distressed. Build duration over days, not hours.</div>
+                <div class="schedule-item"><strong>After nap:</strong> Straight outside to potty, then gentle play or exploration.</div>
+            </div>
+        </div>
+
+        <div class="schedule-block">
+            <div class="schedule-header">Afternoon</div>
+            <div class="schedule-items">
+                <div class="schedule-item"><strong>Potty breaks:</strong> Every 30-45 min. After every nap, meal, and play session. Watch for circling or floor-sniffing.</div>
+                <div class="schedule-item"><strong>Exploration:</strong> Let her sniff a second room. Keep it calm.</div>
+                <div class="schedule-item"><strong>Handling practice:</strong> Gently touch paws, ears, mouth, tail. Pair with tiny treats. Builds tolerance for grooming and vet visits.</div>
+                <div class="schedule-item"><strong>Afternoon meal:</strong> In or near the crate. Potty break immediately after.</div>
+            </div>
+        </div>
+
+        <div class="schedule-block">
+            <div class="schedule-header">Evening</div>
+            <div class="schedule-items">
+                <div class="schedule-item"><strong>Evening meal:</strong> Keep the schedule consistent.</div>
+                <div class="schedule-item"><strong>Calm time:</strong> Let her be near you. Chew toys are great. No rough play — you want a calm puppy by bedtime.</div>
+                <div class="schedule-item"><strong>7-8 PM:</strong> Pick up water bowl (2-3 hours before bedtime).</div>
+                <div class="schedule-item"><strong>Last potty:</strong> Right before crate time. Wait outside until she goes, even if it takes a while.</div>
+            </div>
+        </div>
+
+        <div class="schedule-block">
+            <div class="schedule-header">Bedtime &amp; Overnight</div>
+            <div class="schedule-items">
+                <div class="schedule-item"><strong>9-10 PM:</strong> Place her in the crate in your bedroom. Snuggle Puppy toy helps. Cover crate partially with a blanket.</div>
+                <div class="schedule-item"><strong>Crying:</strong> Some whining is normal. If she settles within 10-15 min, let her be. If intense, sit by the crate — wait for a pause in crying before letting her out for a quick potty break.</div>
+                <div class="schedule-item"><strong>2-3 AM:</strong> Set an alarm. She WILL need an overnight potty break (puppies can hold it ~1 hour per month of age). Carry her outside, let her go, straight back in the crate. No play, no excitement, lights dim.</div>
+                <div class="schedule-item"><strong>5:30-6:30 AM:</strong> She'll wake early. Immediately carry her outside to potty. Then breakfast.</div>
+            </div>
+        </div>
+
+        <!-- ===== GROUND RULES ===== -->
+        <h2 id="rules">Day One Ground Rules</h2>
+
+        <div class="card">
+            <ol style="padding-left: 20px;">
+                <li style="margin-bottom: 10px;"><strong>No visitors.</strong> Let Ilia bond with you first. Other people and animals can be introduced gradually over the coming week.</li>
+                <li style="margin-bottom: 10px;"><strong>No dog parks or public floors.</strong> She's not fully vaccinated yet. Your yard is fine.</li>
+                <li style="margin-bottom: 10px;"><strong>Keep things quiet.</strong> No loud music, no roughhousing. She just left everything she knew.</li>
+                <li style="margin-bottom: 10px;"><strong>Supervise 100%</strong> when she's out of the crate or pen. If you can't watch her, she goes in.</li>
+                <li style="margin-bottom: 10px;"><strong>Accidents will happen.</strong> Enzymatic cleaner, no punishment. Ever.</li>
+                <li><strong>Start as you mean to go on.</strong> If she's not allowed on the couch as an adult, don't let her on it today.</li>
+            </ol>
+        </div>
+
+        <div class="tip">
+            <strong>Remember the 3-3-3 rule:</strong> 3 days to decompress, 3 weeks to settle in, 3 months to truly bond. Be patient — the real Ilia will emerge over time.
+        </div>
+    </div>
+</body>
+</html>
