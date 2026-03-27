@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Sources — Dog Adoption Plan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f5f0eb;
+            color: #2d2d2d;
+            line-height: 1.65;
+        }
+        .hero {
+            background: linear-gradient(135deg, #4a6741 0%, #6b8f71 50%, #8fb996 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px 40px;
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 6px; }
+        .hero p { font-size: 1.05rem; opacity: 0.9; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e0e0e0;
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 6px;
+            padding: 10px 16px;
+        }
+        nav a {
+            text-decoration: none; color: #4a6741; font-size: 0.85rem;
+            font-weight: 600; padding: 4px 12px; border-radius: 6px;
+            transition: background 0.15s;
+        }
+        nav a:hover { background: #e8f5e9; }
+
+        .container { max-width: 840px; margin: 0 auto; padding: 30px 20px 60px; }
+
+        h2 {
+            font-size: 1.5rem; color: #4a6741; margin: 40px 0 16px;
+            padding-bottom: 8px; border-bottom: 2px solid #c8e6c9;
+        }
+        h3 { font-size: 1.15rem; color: #3a5a3a; margin: 24px 0 10px; }
+
+        .card {
+            background: white; border-radius: 12px; padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px;
+        }
+
+        .featured {
+            background: white; border-radius: 12px; padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px;
+            border-left: 5px solid #4a6741;
+        }
+        .featured h3 {
+            font-size: 1.3rem; color: #4a6741; margin: 0 0 4px;
+        }
+        .featured .subtitle {
+            font-size: 0.9rem; color: #888; margin-bottom: 14px;
+        }
+
+        .tag {
+            display: inline-block; font-size: 0.72rem; padding: 2px 8px;
+            border-radius: 4px; font-weight: 600; margin-right: 4px; margin-bottom: 4px;
+        }
+        .tag-green { background: #e8f5e9; color: #2e7d32; }
+        .tag-blue { background: #e3f2fd; color: #1565c0; }
+        .tag-amber { background: #fff3e0; color: #e65100; }
+        .tag-purple { background: #f3e5f5; color: #6a1b9a; }
+
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+            margin: 18px 0;
+        }
+        .stat {
+            background: #f1f8e9; border-radius: 8px; padding: 14px;
+            text-align: center;
+        }
+        .stat-val { font-size: 1.3rem; font-weight: 700; color: #4a6741; }
+        .stat-label { font-size: 0.75rem; color: #666; margin-top: 2px; }
+
+        .rescue-card {
+            background: white; border-radius: 12px; padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 14px;
+            border-left: 4px solid #6b8f71;
+        }
+        .rescue-card h4 {
+            font-size: 1.05rem; color: #4a6741; margin-bottom: 4px;
+        }
+        .rescue-card .region { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+        .rescue-card p { font-size: 0.93rem; }
+
+        .tip-list { list-style: none; padding: 0; counter-reset: tips; }
+        .tip-list li {
+            counter-increment: tips;
+            padding: 16px 20px 16px 56px;
+            background: white; border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 12px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        .tip-list li::before {
+            content: counter(tips);
+            position: absolute; left: 18px; top: 16px;
+            width: 26px; height: 26px; background: #4a6741;
+            color: white; border-radius: 50%; font-size: 0.8rem;
+            font-weight: 700; display: flex; align-items: center;
+            justify-content: center;
+        }
+        .tip-list li strong { color: #4a6741; }
+
+        .back-link {
+            display: inline-block; margin-bottom: 20px; color: #4a6741;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        a.ext { color: #4a6741; }
+
+        @media (max-width: 600px) {
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Adoption Sources</h1>
+        <p>Where to find your future hiking companion</p>
+    </div>
+
+    <nav>
+        <a href="#rezdawg">RezDawg Rescue</a>
+        <a href="#herding-rescues">Herding Breed Rescues</a>
+        <a href="#tips">Adoption Tips</a>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Plan</a>
+
+        <!-- ===== REZDAWG ===== -->
+        <h2 id="rezdawg">RezDawg Rescue</h2>
+
+        <div class="featured">
+            <h3>RezDawg Rescue</h3>
+            <div class="subtitle">501(c)(3) &middot; Founded 2012 &middot; Four Corners Region (CO, NM, AZ)</div>
+            <div style="margin-bottom: 12px;">
+                <span class="tag tag-green">Previously adopted from</span>
+                <span class="tag tag-blue">Foster-based</span>
+                <span class="tag tag-purple">Community-focused</span>
+            </div>
+            <p>Founded by Angela Cerci while teaching on the Navajo Nation. RezDawg collaborates with Indigenous and rural communities throughout the Four Corners region, providing rescue, rehabilitation, fostering, and adoption services. They also run mobile spay/neuter clinics and community outreach.</p>
+
+            <div class="stat-grid">
+                <div class="stat">
+                    <div class="stat-val">850+</div>
+                    <div class="stat-label">Adoptions/year</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">1,650</div>
+                    <div class="stat-label">Animals transported/year</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">2,500</div>
+                    <div class="stat-label">Spay/neuter surgeries/year</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">6,800</div>
+                    <div class="stat-label">Vaccinations/year</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">18,500+</div>
+                    <div class="stat-label">Total animals helped since 2012</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">200K lbs</div>
+                    <div class="stat-label">Food/supplies distributed monthly</div>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 16px; color: #3a5a3a;">Adoption Details</h4>
+            <ul style="padding-left: 18px; margin-top: 8px;">
+                <li>All dogs are spayed/neutered, vaccinated, and microchipped</li>
+                <li><strong>$475</strong> adoption fee for dogs over 1 year</li>
+                <li><strong>$550</strong> adoption fee for puppies under 1 year</li>
+                <li>5-acre hub property 30 miles east of Albuquerque</li>
+                <li>Foster families can provide detailed behavioral info</li>
+            </ul>
+            <p style="margin-top: 12px;"><a class="ext" href="https://rezdawgrescue.org" target="_blank">rezdawgrescue.org</a></p>
+        </div>
+
+        <!-- ===== HERDING RESCUES ===== -->
+        <h2 id="herding-rescues">Herding Breed Rescues</h2>
+        <p style="margin-bottom: 16px;">If you're specifically looking for an Australian Shepherd, Border Collie, or herding mix, these organizations specialize in those breeds:</p>
+
+        <div class="rescue-card">
+            <h4>All Herding Breed Dog Rescue of Illinois</h4>
+            <div class="region">Joliet, IL &middot; All-volunteer 501(c)(3)</div>
+            <p>Rescued 385 dogs and adopted out 350 in a recent fiscal year. Covers all herding breeds.</p>
+        </div>
+
+        <div class="rescue-card">
+            <h4>ECHO Rescue (East Coast Herding-Dog Organization)</h4>
+            <div class="region">NYC / NJ Tri-State Area</div>
+            <p>Arranges foster homes for recovery and behavioral work before adoption. Good behavioral assessments.</p>
+        </div>
+
+        <div class="rescue-card">
+            <h4>Herd U Needed A Home</h4>
+            <div class="region">National</div>
+            <p>Focuses on Border Collies, Heelers, Australian Shepherds, and McNabs.</p>
+        </div>
+
+        <div class="rescue-card">
+            <h4>HeRD of Wyoming (Herding Rescue Dogs)</h4>
+            <div class="region">Wyoming &middot; Regional</div>
+            <p>Regional herding breed rescue. Closer to Colorado for easier adoption logistics.</p>
+        </div>
+
+        <div class="rescue-card">
+            <h4>Central Coast Herding Dog Rescue</h4>
+            <div class="region">California &middot; Volunteer-run 501(c)(3)</div>
+            <p>Fosters and rescue partners statewide and beyond.</p>
+        </div>
+
+        <div class="rescue-card">
+            <h4>Helping Herders Rescue</h4>
+            <div class="region">Southern California &middot; Foster-based 501(c)(3)</div>
+            <p>Specializes in abandoned herding dogs.</p>
+        </div>
+
+        <!-- ===== TIPS ===== -->
+        <h2 id="tips">Adoption Tips</h2>
+
+        <ol class="tip-list">
+            <li><strong>Assess your lifestyle honestly.</strong> Herding breeds need 1–2 hours of daily exercise plus mental stimulation. Make sure the idea of constantly challenging your dog's brain excites you.</li>
+            <li><strong>Ask for detailed behavioral info.</strong> Foster-based rescues know their dogs well — ask about behavior on walks, with other dogs, when left alone, and in a home environment.</li>
+            <li><strong>Follow the 3-3-3 rule.</strong> Rescue dogs need about 3 days to decompress, 3 weeks to settle in, and 3 months to truly feel safe and bonded. Be patient.</li>
+            <li><strong>Schedule a vet visit in the first week.</strong> Even with rescue-provided health records, get a fresh checkup. Ask about MDR1 gene testing for herding breeds.</li>
+            <li><strong>Dog-proof your home before arrival.</strong> Remove toxic plants (aloe vera, ivy, lilies), secure trash, and set up a quiet retreat space.</li>
+            <li><strong>Consider a dog with a known history.</strong> Foster-based rescues (vs. shelters) can tell you much more about a dog's real-world behavior.</li>
+            <li><strong>Be ready for herding breed quirks.</strong> They may nip at heels, try to herd children or other pets, and can be vocal. Manageable with training, but know what you're signing up for.</li>
+        </ol>
+    </div>
+</body>
+</html>

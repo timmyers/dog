@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breed Research — Dog Adoption Plan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f5f0eb;
+            color: #2d2d2d;
+            line-height: 1.65;
+        }
+        .hero {
+            background: linear-gradient(135deg, #4a6741 0%, #6b8f71 50%, #8fb996 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px 40px;
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 6px; }
+        .hero p { font-size: 1.05rem; opacity: 0.9; }
+        .specs {
+            display: flex; justify-content: center; gap: 30px;
+            margin-top: 18px; flex-wrap: wrap;
+        }
+        .spec { text-align: center; }
+        .spec-val { font-size: 1.3rem; font-weight: 700; }
+        .spec-label { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e0e0e0;
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 6px;
+            padding: 10px 16px;
+        }
+        nav a {
+            text-decoration: none; color: #4a6741; font-size: 0.85rem;
+            font-weight: 600; padding: 4px 12px; border-radius: 6px;
+            transition: background 0.15s;
+        }
+        nav a:hover { background: #e8f5e9; }
+
+        .container { max-width: 840px; margin: 0 auto; padding: 30px 20px 60px; }
+
+        h2 {
+            font-size: 1.5rem; color: #4a6741; margin: 40px 0 16px;
+            padding-bottom: 8px; border-bottom: 2px solid #c8e6c9;
+        }
+        h3 { font-size: 1.15rem; color: #3a5a3a; margin: 24px 0 10px; }
+
+        .card {
+            background: white; border-radius: 12px; padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px;
+        }
+        .card-header {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+        }
+        .card-header h3 { margin: 0; font-size: 1.2rem; }
+
+        .comparison-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+        .breed-card {
+            background: white; border-radius: 12px; padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .breed-card h3 {
+            margin: 0 0 4px; font-size: 1.25rem; color: #4a6741;
+        }
+        .breed-card .subtitle {
+            font-size: 0.85rem; color: #888; margin-bottom: 14px;
+        }
+        .breed-card ul { padding-left: 18px; }
+        .breed-card li { margin-bottom: 6px; font-size: 0.95rem; }
+
+        .tag {
+            display: inline-block; font-size: 0.72rem; padding: 2px 8px;
+            border-radius: 4px; font-weight: 600; margin-right: 4px; margin-bottom: 4px;
+        }
+        .tag-green { background: #e8f5e9; color: #2e7d32; }
+        .tag-blue { background: #e3f2fd; color: #1565c0; }
+        .tag-amber { background: #fff3e0; color: #e65100; }
+        .tag-red { background: #fce4ec; color: #c62828; }
+        .tag-purple { background: #f3e5f5; color: #6a1b9a; }
+
+        table {
+            width: 100%; border-collapse: collapse; margin: 14px 0;
+            font-size: 0.92rem;
+        }
+        th {
+            text-align: left; padding: 10px 12px; background: #f1f8e9;
+            color: #4a6741; font-weight: 600; border-bottom: 2px solid #c8e6c9;
+        }
+        td {
+            padding: 10px 12px; border-bottom: 1px solid #eee;
+        }
+        tr:hover td { background: #fafafa; }
+
+        .meter {
+            display: flex; align-items: center; gap: 8px;
+        }
+        .meter-bar {
+            flex: 1; height: 8px; background: #e0e0e0; border-radius: 4px;
+            overflow: hidden;
+        }
+        .meter-fill {
+            height: 100%; border-radius: 4px;
+        }
+        .meter-label { font-size: 0.8rem; color: #888; min-width: 60px; }
+
+        .verdict {
+            background: #f1f8e9; border-left: 4px solid #4a6741;
+            padding: 16px 20px; border-radius: 0 8px 8px 0;
+            margin: 20px 0; font-size: 0.95rem;
+        }
+        .verdict strong { color: #4a6741; }
+
+        .alt-breed {
+            background: white; border-radius: 12px; padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 14px;
+            border-left: 4px solid #6b8f71;
+        }
+        .alt-breed h4 {
+            font-size: 1.05rem; color: #4a6741; margin-bottom: 4px;
+        }
+        .alt-breed .weight { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+        .alt-breed p { font-size: 0.93rem; }
+
+        .back-link {
+            display: inline-block; margin-bottom: 20px; color: #4a6741;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .comparison-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.6rem; }
+            .specs { gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Breed Research</h1>
+        <p>Finding the ideal intelligent, active, medium-sized hiking companion</p>
+        <div class="specs">
+            <div class="spec">
+                <div class="spec-val">Medium</div>
+                <div class="spec-label">Target Size</div>
+            </div>
+            <div class="spec">
+                <div class="spec-val">High</div>
+                <div class="spec-label">Activity Level</div>
+            </div>
+            <div class="spec">
+                <div class="spec-val">Hiking</div>
+                <div class="spec-label">Primary Activity</div>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#comparison">Aussie vs. Border Collie</a>
+        <a href="#size">Size</a>
+        <a href="#traits">Trait Comparison</a>
+        <a href="#health">Health</a>
+        <a href="#verdict">Verdict</a>
+        <a href="#alternatives">Other Breeds</a>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Plan</a>
+
+        <!-- ===== MAIN COMPARISON ===== -->
+        <h2 id="comparison">Australian Shepherd vs. Border Collie</h2>
+        <p>Both are top-tier herding breeds with exceptional intelligence and athleticism. Your friends' suggestions are excellent starting points — here's how they compare for your lifestyle.</p>
+
+        <div class="comparison-grid" style="margin-top: 20px;">
+            <div class="breed-card">
+                <h3>Australian Shepherd</h3>
+                <div class="subtitle">AKC Herding Group</div>
+                <div style="margin-bottom: 12px;">
+                    <span class="tag tag-green">Friendly</span>
+                    <span class="tag tag-blue">Versatile</span>
+                    <span class="tag tag-green">Adaptable</span>
+                    <span class="tag tag-purple">Protective</span>
+                </div>
+                <ul>
+                    <li>High-energy, playful, and athletic</li>
+                    <li>More sociable with strangers — relaxed on busy trails</li>
+                    <li>Protective of their people, gentle with kids</li>
+                    <li>Versatile: excels at agility, obedience, and outdoor sports</li>
+                    <li>Slightly more forgiving if you miss a training session</li>
+                    <li>Settles down more easily at end of day</li>
+                </ul>
+            </div>
+            <div class="breed-card">
+                <h3>Border Collie</h3>
+                <div class="subtitle">AKC Herding Group</div>
+                <div style="margin-bottom: 12px;">
+                    <span class="tag tag-blue">Smartest Breed</span>
+                    <span class="tag tag-amber">Intense</span>
+                    <span class="tag tag-green">Affectionate</span>
+                    <span class="tag tag-purple">Work-driven</span>
+                </div>
+                <ul>
+                    <li>Ranked #1 most intelligent dog breed</li>
+                    <li>Obsessive work ethic — "workaholics"</li>
+                    <li>Bonds closely but can be wary of strangers</li>
+                    <li>Will herd everything that moves (including kids)</li>
+                    <li>Needs constant mental challenges to stay happy</li>
+                    <li>More intense athlete; leaner build</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== SIZE ===== -->
+        <h2 id="size">Size Comparison</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Breed</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Build</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Aussie (male)</strong></td>
+                    <td>20–23 in</td>
+                    <td>55–70 lbs</td>
+                    <td>Stocky, muscular</td>
+                </tr>
+                <tr>
+                    <td><strong>Aussie (female)</strong></td>
+                    <td>18–21 in</td>
+                    <td>35–55 lbs</td>
+                    <td>Stocky, muscular</td>
+                </tr>
+                <tr>
+                    <td><strong>Border Collie</strong></td>
+                    <td>18–22 in</td>
+                    <td>30–55 lbs</td>
+                    <td>Lean, athletic</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.9rem; color: #666;">Both are solidly medium-sized. The Aussie is generally heavier with a stockier frame.</p>
+
+        <!-- ===== TRAITS ===== -->
+        <h2 id="traits">Trait Comparison</h2>
+
+        <div class="card">
+            <h3>Exercise Needs</h3>
+            <p>Both need <strong>1–2 hours of vigorous exercise daily</strong> plus mental stimulation. Both excel at long, demanding hikes and rough terrain. Neither has an "off switch."</p>
+            <div style="margin-top: 14px;">
+                <div class="meter">
+                    <span class="meter-label">Aussie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 90%; background: #4a6741;"></div></div>
+                </div>
+                <div class="meter" style="margin-top: 6px;">
+                    <span class="meter-label">Border Collie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 95%; background: #2e7d32;"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Trainability</h3>
+            <p>Both are among the most trainable breeds in the world. Border Collies rank #1 in canine intelligence; Aussies are in the top 10. Both are eager to please and quick to learn.</p>
+            <div style="margin-top: 14px;">
+                <div class="meter">
+                    <span class="meter-label">Aussie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 92%; background: #4a6741;"></div></div>
+                </div>
+                <div class="meter" style="margin-top: 6px;">
+                    <span class="meter-label">Border Collie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 98%; background: #2e7d32;"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Adaptability</h3>
+            <p>Aussies adapt better to different living situations and settle down more easily. Border Collies thrive best with a "job" to do and prefer suburban/rural settings with outdoor space.</p>
+            <div style="margin-top: 14px;">
+                <div class="meter">
+                    <span class="meter-label">Aussie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 70%; background: #4a6741;"></div></div>
+                </div>
+                <div class="meter" style="margin-top: 6px;">
+                    <span class="meter-label">Border Collie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 50%; background: #e65100;"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Grooming</h3>
+            <p>Both have double coats that shed year-round, with heavy shedding in spring and fall. Brush several times per week; daily during coat-blowing season. <strong>Never shave</strong> — the double coat insulates from heat and cold.</p>
+            <div style="margin-top: 14px;">
+                <div class="meter">
+                    <span class="meter-label">Aussie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 75%; background: #e65100;"></div></div>
+                </div>
+                <div class="meter" style="margin-top: 6px;">
+                    <span class="meter-label">Border Collie</span>
+                    <div class="meter-bar"><div class="meter-fill" style="width: 70%; background: #e65100;"></div></div>
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 6px;">Higher = more grooming effort</p>
+        </div>
+
+        <!-- ===== HEALTH ===== -->
+        <h2 id="health">Health Considerations</h2>
+        <div class="card">
+            <p>Both breeds have a lifespan of <strong>12–15 years</strong>.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concern</th>
+                        <th>Aussie</th>
+                        <th>Border Collie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hip dysplasia</td>
+                        <td><span class="tag tag-amber">Risk</span></td>
+                        <td><span class="tag tag-amber">Risk</span></td>
+                    </tr>
+                    <tr>
+                        <td>Eye problems (PRA, cataracts)</td>
+                        <td><span class="tag tag-amber">Risk</span></td>
+                        <td><span class="tag tag-amber">Risk</span></td>
+                    </tr>
+                    <tr>
+                        <td>MDR1 gene (drug sensitivity)</td>
+                        <td><span class="tag tag-red">Common</span></td>
+                        <td><span class="tag tag-amber">Risk</span></td>
+                    </tr>
+                    <tr>
+                        <td>Epilepsy</td>
+                        <td><span class="tag tag-amber">Risk</span></td>
+                        <td><span class="tag tag-amber">Risk</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cancer</td>
+                        <td><span class="tag tag-red">Higher risk</span></td>
+                        <td><span class="tag tag-green">Lower risk</span></td>
+                    </tr>
+                    <tr>
+                        <td>Merle-to-merle concern</td>
+                        <td><span class="tag tag-red">Yes</span></td>
+                        <td><span class="tag tag-green">Less common</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;"><strong>MDR1 gene note:</strong> Both breeds can carry this mutation, which makes them sensitive to certain common medications (e.g., ivermectin). A simple DNA test can identify carriers — important to know for your vet.</p>
+        </div>
+
+        <!-- ===== VERDICT ===== -->
+        <h2 id="verdict">Hiking Companion Verdict</h2>
+        <div class="verdict">
+            <strong>For your lifestyle, the Australian Shepherd has a slight edge.</strong> Both breeds are superb hiking companions and brilliant dogs. The Aussie tends to be friendlier with strangers on trails, more adaptable to different environments, and slightly more forgiving day-to-day — while still being exceptionally athletic and intelligent. The Border Collie is the more intense athlete and arguably smarter, but demands more constant mental engagement and can be more challenging for a first-time herding-breed owner.
+        </div>
+        <div class="verdict" style="border-left-color: #1565c0; background: #e3f2fd;">
+            <strong>Rescue/mix perspective:</strong> Many dogs from rescues like RezDawg will be mixes, which often means the best of both worlds — herding-breed intelligence and athleticism with potentially fewer breed-specific health issues ("hybrid vigor"). Don't fixate too much on pure breeds; a herding mix from a rescue can be an incredible companion.
+        </div>
+
+        <!-- ===== ALTERNATIVES ===== -->
+        <h2 id="alternatives">Other Breeds Worth Considering</h2>
+        <p style="margin-bottom: 16px;">If you're open to exploring beyond Aussies and Border Collies, these breeds also fit the intelligent/active/medium-sized/hiking profile:</p>
+
+        <div class="alt-breed">
+            <h4>Nova Scotia Duck Tolling Retriever</h4>
+            <div class="weight">35–50 lbs &middot; Sporting Group</div>
+            <p>Active, curious, athletic. Excellent for long trail days. Slightly less intense than herding breeds — a good option if you want the energy without the herding obsessiveness. Affectionate and outgoing.</p>
+        </div>
+
+        <div class="alt-breed">
+            <h4>Brittany</h4>
+            <div class="weight">30–40 lbs &middot; Sporting Group</div>
+            <p>Highly energetic, versatile, and trainable. Wonderful in the house and on the trail. Less "herding obsessive" than Border Collies but equally athletic. Great with families.</p>
+        </div>
+
+        <div class="alt-breed">
+            <h4>Vizsla</h4>
+            <div class="weight">45–65 lbs &middot; Sporting Group</div>
+            <p>Exceptional athletes often called "velcro dogs" for their intense owner bonding. Beautiful, affectionate. Caveat: they do not tolerate separation well — best for owners who spend lots of time with their dog.</p>
+        </div>
+
+        <div class="alt-breed">
+            <h4>German Shorthaired Pointer</h4>
+            <div class="weight">50–70 lbs &middot; Sporting Group</div>
+            <p>Incredibly athletic, friendly, and trainable. Built for endurance. Very versatile and good-natured. On the larger end of medium but an outstanding hiking partner.</p>
+        </div>
+
+        <div class="alt-breed">
+            <h4>Standard Poodle</h4>
+            <div class="weight">40–70 lbs &middot; Non-Sporting Group</div>
+            <p>Often overlooked as athletic dogs, but they're natural athletes with high intelligence. Major advantage: non-shedding coat. Great stamina on trails.</p>
+        </div>
+    </div>
+</body>
+</html>
