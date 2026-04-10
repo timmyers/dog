@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Log — Ilia</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f5f0eb;
+            color: #2d2d2d;
+            line-height: 1.65;
+        }
+        .hero {
+            background: linear-gradient(135deg, #4a6741 0%, #6b8f71 50%, #8fb996 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px 50px;
+        }
+        .hero h1 { font-size: 2.4rem; margin-bottom: 8px; }
+        .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        .nav {
+            background: #4a6741;
+            padding: 10px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 0 12px;
+            font-weight: 500;
+        }
+        .nav a:hover { color: white; }
+        .container { max-width: 840px; margin: 0 auto; padding: 40px 20px; }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+            border-left: 4px solid #6b8f71;
+        }
+        .card h2 { font-size: 1.2rem; margin-bottom: 16px; color: #4a6741; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+        }
+        td { font-size: 0.95rem; }
+        .weight { font-weight: 600; color: #4a6741; }
+        .change-pos { color: #2e7d32; font-size: 0.85rem; }
+        .change-zero { color: #888; font-size: 0.85rem; }
+
+        .summary {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .stat {
+            background: #f5f0eb;
+            border-radius: 8px;
+            padding: 16px 20px;
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+        }
+        .stat .value { font-size: 1.5rem; font-weight: 700; color: #4a6741; }
+        .stat .label { font-size: 0.8rem; color: #888; margin-top: 4px; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .summary { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Weight Log</h1>
+        <p>Tracking Ilia's growth over time</p>
+    </div>
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="breed-research.html">Breed Research</a>
+        <a href="day-one.html">Day One</a>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h2>Summary</h2>
+            <div class="summary">
+                <div class="stat">
+                    <div class="value">18 lbs</div>
+                    <div class="label">Current Weight</div>
+                </div>
+                <div class="stat">
+                    <div class="value">+2 lbs</div>
+                    <div class="label">Total Gain</div>
+                </div>
+                <div class="stat">
+                    <div class="value">11 days</div>
+                    <div class="label">Tracking Since</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Weight History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Weight</th>
+                        <th>Change</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>April 9, 2026</td>
+                        <td class="weight">18 lbs</td>
+                        <td><span class="change-pos">+2 lbs</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>March 29, 2026</td>
+                        <td class="weight">16 lbs</td>
+                        <td><span class="change-zero">—</span></td>
+                        <td>First weigh-in</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
